@@ -6,12 +6,9 @@ class MainClass {
      int[] a = new int[10000];
      int[] b = new int[10000];
      int[] c = new int[10000];
-     int[] d = new int[10000];
-     int i, j, N, k, m, n, l;
-     m = 0;
+     int i, j, N, n;
      n = 0;
      j = 1;
-     l = 0;
      Console.Write("Введите размер массива: ");
      N = int.Parse(Console.ReadLine());
      for (i=1; i<=N; i++)
@@ -22,7 +19,6 @@ class MainClass {
        a[i] = int.Parse(Console.ReadLine());
        c[i] = 0;
        b[i] = 0;
-       d[i] = -12345;
      }
      i = 1;
      while (i<=N)
@@ -68,5 +64,6 @@ class MainClass {
              Console.WriteLine();
            }
      }
+     Console.ReadKey();
     }
   }
