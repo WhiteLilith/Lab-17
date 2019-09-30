@@ -1,0 +1,75 @@
+using System;
+
+class MainClass {
+  public static void Main (string[] args) 
+  {
+     int[] a = new int[10000];
+     int[] b = new int[10000];
+     int[] c = new int[10000];
+     int i, j, N, n, L;
+     n = 0;
+     j = 1;
+     Console.Write("Введите число L: ");
+     L = int.Parse(Console.ReadLine());
+     Console.Write("Введите размер массива: ");
+     N = int.Parse(Console.ReadLine());
+     for (i=1; i<=N; i++)
+     {
+       Console.Write("a[");
+       Console.Write(i);
+       Console.Write("] = ");
+       a[i] = int.Parse(Console.ReadLine());
+       b[i] = 0;
+       c[i] = 0;
+     }
+     i = 1;
+     while (i<=N)
+     {
+        while (a[i]==a[i+j] && j<=N-i)
+          {
+             c[i] = a[i];
+             b[i] = j + 1;
+             j = j + 1;
+          }
+        if (a[i]!=a[i+1])
+        {
+          c[i] = a[i];
+          b[i] = 1;
+        }
+        if (b[i]!=0)
+        {
+          i = b[i] + i;
+        }
+        else
+        {
+          i = i + 1;
+        }
+        j = 1;
+     }
+     i = 1;
+     j = N;
+     Console.WriteLine();
+     Console.WriteLine();
+     while (i<=N)
+     {
+       if (b[i]!=0 && c[i]!=0 && b[i]>L)
+           {
+             n = n+1;
+             Console.Write("a[");
+             Console.Write(n);
+             Console.WriteLine("] = 0");
+             i = i+b[i];
+           }
+       else
+       {
+         n = n+1;
+         Console.Write("a[");
+         Console.Write(n);
+         Console.Write("] = ");
+         Console.WriteLine(a[i]);
+         i = i+1;
+       }
+    }
+    Console.ReadKey();
+  }
+}
