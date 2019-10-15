@@ -1,0 +1,75 @@
+using System;
+
+class MainClass
+{
+    public static void Main(string[] args)
+    {
+        Console.Clear();
+        int N, i, l, j, k, m;
+        double a, b, c;
+        double[] x = new double[1000];
+        double[] y = new double[1000];
+        double[] p = new double[1000];
+        double[] a = new double[1000];
+        double[] b = new double[1000];
+        double[] c = new double[1000];
+        Console.Write("Введите количество точек: ");
+        N = int.Parse(Console.ReadLine());
+        for (i=1; i<=N; i++)
+        {
+          Console.Write("Введите координату х ");
+          Console.Write(i);
+          Console.Write(" точки: ");
+          x[i] = double.Parse(Console.ReadLine());
+          Console.Write("Введите координату y ");
+          Console.Write(i);
+          Console.Write(" точки: ");
+          y[i] = double.Parse(Console.ReadLine());
+          a[i] = -34314344;
+        }
+        m = -34314344;
+        if (N < 3)
+        Console.Write("Количество точек недостаточно для выполнения расчетов.");
+        else
+        {
+          for (i = 1; i<=N-2; i++)
+          {
+            for (j=i; j<=N-1; j++)
+            {
+              for (k=j; k<=N; k++)
+              {
+                a = Math.Sqrt(Math.Sqr(Math.Abs(x[i]-x[j])) + Math.Sqr(Math.Abs(y[i]-y[j])));
+                b = Math.Sqrt(Math.Sqr(Math.Abs(x[j]-x[k])) + Math.Sqr(Math.Abs(y[j]-y[k])));
+                c = Math.Sqrt(Math.Sqr(Math.Abs(x[k]-x[i])) + Math.Sqr(Math.Abs(y[k]-y[i])));
+                p[i] = a + b + c;
+                a[i] = i;
+                b[i] = j;
+                c[i] = k;
+              }
+            }
+          }
+          for (i=1; i<=N; i++)
+          {
+            if (p[i]>m)
+            {
+              m = p[i];
+              l = i;
+            }
+          }
+          Console.Write("Наибольший периметр у треугольника с вершинами в точках с координатами: (");
+          Console.Write(x[a[l]]);
+          Console.Write(", ");
+          Console.Write(y[a[l]]);
+          Console.Write("), (");
+          Console.Write(x[b[l]]);
+          Console.Write(", ");
+          Console.Write(y[b[l]]);
+          Console.Write("), (");
+          Console.Write(x[c[l]]);
+          Console.Write(", ");
+          Console.Write(y[c[l]]);
+          Console.Write("), и составляет: ");
+          Console.Write(m);
+        }
+    }
+}
