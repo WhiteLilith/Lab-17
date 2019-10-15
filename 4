@@ -1,0 +1,59 @@
+using System;
+
+class MainClass
+{
+    public static void Main(string[] args)
+    {
+        Console.Clear();
+        Random rand = new Random();
+        double[] x = new double[1000];
+        double[] y = new double[1000];
+        double[] b = new double[1000];
+        double N, k;
+        int i, l;
+        Console.Write("Введите количество точек: ");
+        N = int.Parse(Console.ReadLine());
+        for (i=1; i<=N; i++)
+        {
+           Console.Write("Введите координату х ");
+           Console.Write(i);
+           Console.Write(" точки: ");
+           x[i] = rand.Next(100);
+           y[i] = rand.Next(100);
+           x[i] = double.Parse(Console.ReadLine());
+           Console.Write("Введите координату y ");
+           Console.Write(i);
+           Console.Write(" точки: ");
+           y[i] = double.Parse(Console.ReadLine());
+           b[i] = -34314344;
+        }
+        for (i=1; i<=N; i++)
+        {
+          if (x[i] < 0 && y[i] > 0)
+          {
+            b[i] = Math.Sqrt(x[i] * x[i] + y[i] * y[i]);
+          }
+        }
+        l = 0;
+        k = -34314344;
+        for (i=1; i<=N; i++)
+        {
+          if (b[i] > k)
+          {
+            k = b[i];
+            l = i;
+          }
+        }
+        if (l != 0)
+        {
+        Console.Write("Наиболее удалена от начала координат точка с координатами (");
+        Console.Write(x[l]);
+        Console.Write(", ");
+        Console.Write(y[l]);
+        Console.Write("), находящаяся во второй координатной четверти. Расстояние до начала координат составляет: ");
+        Console.Write("{0:0.##}", b[l]);
+        }
+        else
+        Console.Write("(0, 0).");
+    }
+}
