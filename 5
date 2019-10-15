@@ -5,14 +5,14 @@ class MainClass
     public static void Main(string[] args)
     {
         Console.Clear();
-        int N, i, l, j, k, m;
-        double a, b, c;
+        int N, i, l, j, k;
+        double a, b, c, m;
         double[] x = new double[1000];
         double[] y = new double[1000];
         double[] p = new double[1000];
-        double[] a = new double[1000];
-        double[] b = new double[1000];
-        double[] c = new double[1000];
+        int[] A = new int[1000];
+        int[] B = new int[1000];
+        int[] C = new int[1000];
         Console.Write("Введите количество точек: ");
         N = int.Parse(Console.ReadLine());
         for (i=1; i<=N; i++)
@@ -25,8 +25,9 @@ class MainClass
           Console.Write(i);
           Console.Write(" точки: ");
           y[i] = double.Parse(Console.ReadLine());
-          a[i] = -34314344;
+          p[i] = -34314344;
         }
+        l = 0;
         m = -34314344;
         if (N < 3)
         Console.Write("Количество точек недостаточно для выполнения расчетов.");
@@ -38,13 +39,13 @@ class MainClass
             {
               for (k=j; k<=N; k++)
               {
-                a = Math.Sqrt(Math.Sqr(Math.Abs(x[i]-x[j])) + Math.Sqr(Math.Abs(y[i]-y[j])));
-                b = Math.Sqrt(Math.Sqr(Math.Abs(x[j]-x[k])) + Math.Sqr(Math.Abs(y[j]-y[k])));
-                c = Math.Sqrt(Math.Sqr(Math.Abs(x[k]-x[i])) + Math.Sqr(Math.Abs(y[k]-y[i])));
+                a = Math.Sqrt((Math.Abs(x[i]-x[j]))*(Math.Abs(x[i]-x[j])) + (Math.Abs(y[i]-y[j])*(Math.Abs(y[i]-y[j]))));
+                b = Math.Sqrt((Math.Abs(x[j]-x[k]))*(Math.Abs(x[j]-x[k])) + (Math.Abs(y[j]-y[k])*(Math.Abs(y[j]-y[k]))));
+                c = Math.Sqrt((Math.Abs(x[k]-x[i]))*(Math.Abs(x[k]-x[i])) + (Math.Abs(y[k]-y[i]))*(Math.Abs(y[k]-y[i])));
                 p[i] = a + b + c;
-                a[i] = i;
-                b[i] = j;
-                c[i] = k;
+                A[i] = i;
+                B[i] = j;
+                C[i] = k;
               }
             }
           }
@@ -57,17 +58,17 @@ class MainClass
             }
           }
           Console.Write("Наибольший периметр у треугольника с вершинами в точках с координатами: (");
-          Console.Write(x[a[l]]);
+          Console.Write(x[A[l]]);
           Console.Write(", ");
-          Console.Write(y[a[l]]);
+          Console.Write(y[A[l]]);
           Console.Write("), (");
-          Console.Write(x[b[l]]);
+          Console.Write(x[B[l]]);
           Console.Write(", ");
-          Console.Write(y[b[l]]);
+          Console.Write(y[B[l]]);
           Console.Write("), (");
-          Console.Write(x[c[l]]);
+          Console.Write(x[C[l]]);
           Console.Write(", ");
-          Console.Write(y[c[l]]);
+          Console.Write(y[C[l]]);
           Console.Write("), и составляет: ");
           Console.Write(m);
         }
