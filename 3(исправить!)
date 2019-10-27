@@ -8,7 +8,6 @@ class MainClass
         int[] b = new int[3];
         int[] c = new int[3];
         int N, K, i, j, mk, ml, kk, kl, n;
-        Console.Clear();
         Console.Write("Введите размер массива: ");
         N = int.Parse(Console.ReadLine());
         Console.Write("Номер серии для замены: ");
@@ -59,89 +58,42 @@ class MainClass
         Console.Write(b[2]);
         Console.Write(" элемента длиной в ");
         Console.WriteLine(c[2]);
-        // ^ Все верно ^
+        i = 1;
+        c[3] = 0;
         while (i <= N)
         {
-            if (kk > kl)//проверка соотношения длин серий
-            {
-                if (i == mk)//нахождение элемента-начала К-той серии
-                {
-                  while (N <= N + kk - kl)
-                  {
-                    for (j = mk + kk - kl; j <= N - 1; j++)
-                    {
-                        a[j] = a[j + 1];//сдвиг, необходимый для "выравнивания" массива
-                        N = N + 1;
-                    }
-                  }
-                    for (j = 0; j <= kl - 1; j++)
-                    {
-                        a[i + j] = b[2];//внесение серии в массив 
-                    }
-                    i = i + kl;
-                }
-                if (i == ml)//нахождение элемента-начала последней серии
-                {
-                    for (j = 0; j <= kk - 1; j++)
-                    {
-                        a[i + j] = b[1];//внесение серии в массив
-                    }
-                    i = N + 100;
-                }
-            }
-            if (kk < kl)
-            {
-                if (i == mk)//нахождение элемента-начала К-той серии
-                {
-                  while (N <= N + kk - kl)
-                  {
-                    for (j = mk + kk - kl; j <= N - 1; j++)
-                    {
-                        a[j] = a[j + 1];//сдвиг, необходимый для "выравнивания" массива
-                        N = N + 1;
-                    }
-                  }
-                    for (j = 0; j <= kl - 1; j++)
-                    {
-                        a[i + j] = b[2];//внесение серии в массив 
-                    }
-                    i = i + kl;
-                }
-                if (i == ml)//нахождение элемента-начала последней серии
-                {
-                    for (j = 0; j <= kk - 1; j++)
-                    {
-                        a[i + j] = b[1];//внесение серии в массив
-                    }
-                    i = N + 100;
-               }  
-            }
-            if (kk == kl)
-            {
-                if (i == mk)//нахождение элемента-начала К-той серии
-                {
-                    for (j = 0; j < kl-1; j++)
-                        a[i+j] = b[2];//внесение серии в массив
-                        i = i + kl;
-                }
-                if (i == ml)//нахождение элемента-начала последней серии
-                {
-                    for (j = 0; j < kk-1; j++)
-                        a[i+j] = b[1];//внесение серии в массив
-                        i = N + 100;
-                }
-            }
-          }
-        for (i = 1; i <= N; i++)
-        {
+          if (i<mk || i>mk+kl-1)
+          {
             Console.Write("a[");
-            Console.Write(i);
+            Console.Write(i+c[3]);
             Console.Write("] = ");
             Console.Write(a[i]);
-            if (i!=N)
             Console.Write(", ");
+          }
+          else
+          {
+            if (i>=mk && i<=mk+kl-1)
+            {
+              Console.Write("a[");
+              Console.Write(i);
+              Console.Write("] = ");
+              Console.Write(b[2]);
+              Console.Write(", ");
+              c[3]++;
+            }
             else
-            Console.Write(".");
+            {
+              if (i>=ml)
+              {
+                Console.Write("a[");
+                Console.Write(i);
+                Console.Write("] = ");
+                Console.Write(b[1]);
+                Console.Write(", ");
+              }
+            }
+          }
+          i = i + 1;
         }
     }
 }
