@@ -1,99 +1,66 @@
-using System;
+using System; 
 
-class MainClass
-{
-    public static void Main(string[] args)
+class MainClass { 
+static void Main(string[] args) 
+{ 
+int N, K, t = 0, j = 0, k = 1, i, g;
+Console.WriteLine("Введите размер массива: ");
+N = int.Parse(Console.ReadLine());
+Console.WriteLine("Введите число K: ");
+K = int.Parse(Console.ReadLine());
+int[] A = new int[N];
+int[] B = new int[N];
+int[] C = new int[N];
+Console.WriteLine("Введите элементы массива: ");
+for (i = 0; i < N; i++)
+ {
+   A[i] = int.Parse(Console.ReadLine());
+   if (i >= 1)
     {
-        int[] a = new int[1000];
-        int[] b = new int[3];
-        int[] c = new int[3];
-        int N, K, i, j, mk, ml, kk, kl, n;
-        Console.Write("Введите размер массива: ");
-        N = int.Parse(Console.ReadLine());
-        Console.Write("Номер серии для замены: ");
-        K = int.Parse(Console.ReadLine());
-        for (i = 1; i <= N; i++) //заполнение массива
-        {
-            Console.Write("a[");
-            Console.Write(i);
-            Console.Write("] = ");
-            a[i] = int.Parse(Console.ReadLine());
-        }
-        i = 1;//счетчик 1
-        j = 0;//счетчик 2
-        n = 0;//номер серии
-        kk = 0;//длина К-той серии
-        mk = 0;//номер элемента-начала К-той серии
-        while (n < K)
-        {
-            mk = i;//указание элемента-начала серии
-            while (a[i] == a[i + j] && j < N - i && i<N) //проверка на наличие серии
-                {
-                    kk++;//увеличение длины серии
-                    j++;//переход к следующему по порядку элементу
-                }
-                n++;//переход к следующей серии
-                i = i + kk;//переход к следующему элементу-началу серии
-        }
-        b[1] = a[mk];//сохранение элемента-начала К-той серии
-        c[1] = kk;//сохранение длины К-той серии
-        i = N; //счетчик 1
-        kl = 0; //длина последней серии
-        ml = 0;//номер элемента-начала последней серии
-        j = 0;//счетчик 2
-            while (a[N] == a[N-j])
-            {
-               ml = i;//указание элемента-начала последней серии
-               kl++;//увеличение длины серии
-               j++;//переход к следующему по порядку элементу
-            } 
-            
-        b[2] = a[ml];//сохранение элемента-начала последней серии
-        c[2] = kl;//сохранение длины последней серии
-        Console.Write("K-тая серия из ");
-        Console.Write(b[1]);
-        Console.Write(" элемента длиной в ");
-        Console.WriteLine(c[1]);
-        Console.Write("Последняя серия из ");
-        Console.Write(b[2]);
-        Console.Write(" элемента длиной в ");
-        Console.WriteLine(c[2]);
-        i = 1;
-        c[3] = 0;
-        while (i <= N)
-        {
-          if (i<mk || i>mk+kl-1)
-          {
-            Console.Write("a[");
-            Console.Write(i+c[3]);
-            Console.Write("] = ");
-            Console.Write(a[i]);
-            Console.Write(", ");
-          }
-          else
-          {
-            if (i>=mk && i<=mk+kl-1)
-            {
-              Console.Write("a[");
-              Console.Write(i);
-              Console.Write("] = ");
-              Console.Write(b[2]);
-              Console.Write(", ");
-              c[3]++;
-            }
-            else
-            {
-              if (i>=ml)
-              {
-                Console.Write("a[");
-                Console.Write(i);
-                Console.Write("] = ");
-                Console.Write(b[1]);
-                Console.Write(", ");
-              }
-            }
-          }
-          i = i + 1;
-        }
+      if (A[i] == A[i - 1]) k++;
+      else
+       {
+         B[j] = k;
+         k = 1;
+         C[j] = A[i - 1];
+         j++;
+         t++;
+       }
+      if (i == N - 1)
+       {
+         B[j] = k;
+         C[j] = A[i];
+         t++;
+       }
     }
-}
+ }
+Console.WriteLine();
+Console.WriteLine();
+Console.WriteLine("Конечный массив: ");
+for (i=0;i<t;i++)
+ {
+   if (i!= K - 1&&i!=t-1)
+ {
+   for(g=0;g<B[i];g++)
+    {
+      Console.Write(C[i]+" ");
+    }
+ }
+   if(i==K-1)
+    {
+      for (g=0;g<B[t-1];g++)
+       {
+         Console.Write(C[t-1]+" ");
+       }
+    }
+   if(i==t-1)
+    {
+     for(g=0;g<B[K-1];g++)
+      {
+       Console.Write(C[K-1]+" ");
+      }
+    }
+ }
+Console.ReadLine();
+} 
+} 
